@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      .hideMe {
+        -moz-animation: cssAnimation 0s ease-in 1s forwards;
+        -webkit-animation: cssAnimation 0s ease-in 1s forwards;
+        -o-animation: cssAnimation 0s ease-in 1s forwards;
+        animation: cssAnimation 0s ease-in 1s forwards;
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+      }
+      @keyframes cssAnimation {
+        to {
+          width: 0;
+          height: 0;
+          overflow: hidden;
+        }
+      }
+      @-webkit-keyframes cssAnimation {
+        to {
+          width: 0;
+          height: 0;
+          visibility: hidden;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %}
+    <p style="color: red" class="hideMe">{{ message }}</p>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <h1 class="title">Login</h1>
+    <form action="/login" method="post">
+      <label for="username">UserName: </label>
+      <input class="input" type="text" id="username" name="username" required />
+      <label for="password">Password: </label>
+      <input class="input" type="text" id="password" name="password" required />
+      <button class="button" type="submit">Login</button>
+    </form>
+  </body>
+</html>

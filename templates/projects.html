@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    {% include 'header.html'%}
+    {%if projects %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Pname</th>
+          <th>Pnumber</th>
+          <th>Plocation</th>
+          <th>Dnum</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for project in projects %}
+        <tr>
+          <form action="/update_project" method="post" class="form-inline">
+            <td>
+              <input
+                class="input"
+                type="text"
+                id="Pname"
+                name="Pname"
+                required
+                value="{{ project[0] }}"
+              />
+            </td>
+
+            <td>
+              <input
+                class="input"
+                type="text"
+                id="Pnumber"
+                name="Pnumber"
+                required
+                value="{{ project[1] }}"
+              />
+            </td>
+
+            <td>
+              <input
+                class="input"
+                type="text"
+                id="Plocation"
+                name="Plocation"
+                required
+                value="{{ project[2] }}"
+              />
+            </td>
+
+            <td>
+              <input
+                class="input"
+                type="number"
+                id="Dnum"
+                name="Dnum"
+                required
+                value="{{ project[3] }}"
+              />
+            </td>
+
+            <td>
+              <button class="button has-background-primary" type="submit">Save</button>
+            </form>
+            <form action="/delete_project" method="post" class="form-inline">
+                   <input
+                 type="hidden"
+                id="Pnumber"
+                name="Pnumber"
+                value="{{ project[1] }}"
+              />
+              <button class="button has-background-danger	" type="submit">Delete</button>
+            </form>
+            </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+     <h1 class="title">Add Project</h1>
+    <form action="/add_project" method="POST">
+      <label for="Pname">Pname</label>
+      <input class="input" type="text" id="Pname" name="Pname" required />
+
+      <label for="Pnumber">Pnumber</label>
+      <input class="input" type="text" id="Pnumber" name="Pnumber" required />
+
+      <label for="Plocation">Plocation</label>
+      <input
+        class="input"
+        type="text"
+        id="Plocation"
+        name="Plocation"
+        required
+      />
+
+      <label for="Dnum">Dnum</label>
+      <input class="input" type="number" id="Dnum" name="Dnum" required />
+
+      <button type="submit" class="button has-background-primary">
+        Add Project
+      </button>
+    </form>
+    {% include 'footer.html'%}
+  </body>
+</html>

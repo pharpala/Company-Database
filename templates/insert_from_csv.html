@@ -1,0 +1,15 @@
+<h1 class="title">Insert From CSV</h1>
+<p>
+  Must follow pattern (username password_hash role dno fname minit lname ssn
+  address sex salary pname pnumber plocation dnum dlocation)
+</p>
+<form action="/inset_from_csv" method="post">
+  <textarea class="textarea" name="csv">
+username,password_hash,role,dno,fname,minit,lname,ssn,address,sex,salary,pname,pnumber,plocation,dnum,dlocation
+mukul,scrypt:32768:8:1$QiBEDDOix2grtGrL$b310f2cdc064aebf4820f089fd358b4d1cafff57b1d95153f30c0d09acf86a66269a63050c2c5c1982c82594bb6db1479218d4287fdd00436dd4a8181c50a6e3,1,1,Susan,D,Lee,444555690,321 Oak St,F,65000,Computerization,10,Stafford,4,Guelph
+</textarea
+  >
+  <button class="button has-background-primary" type="submit">
+    Insert Data
+  </button>
+</form>

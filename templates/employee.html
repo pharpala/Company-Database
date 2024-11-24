@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    {% include 'header.html'%}
+
+    <h1 class="title is-1">{{ employee[1] }}</h1>
+    <h2 class="subtitle is-4">
+      {{ employee[5] }} {{ employee[6] }} {{ employee[7] }}
+    </h2>
+
+    <form action="/update_employee" method="POST">
+      <input type="hidden" name="username" value="{{ employee[1] }}" />
+      <input type="hidden" name="fname" value="{{ employee[5] }}" />
+      <input type="hidden" name="minit" value="{{ employee[6] }}" />
+      <input type="hidden" name="lname" value="{{ employee[7] }}" />
+      <input type="hidden" name="id" value="{{ employee[0] }}" />
+
+      <div class="fixed-grid">
+        <div class="grid">
+          <!-- Address -->
+          <div class="cell">Address</div>
+          <div class="cell">
+            <input
+              class="input"
+              type="text"
+              name="address"
+              value="{{ employee[9] }}"
+            />
+          </div>
+          <!-- SSN -->
+          <div class="cell">SSN</div>
+          <div class="cell">
+            <input
+              class="input"
+              type="text"
+              name="ssn"
+              value="{{ employee[8] }}"
+              readonly
+            />
+          </div>
+
+          <div class="cell">Role (1 superadmin, 2 admin, 3 employee)</div>
+          <div class="cell">
+            <input class="input" name="role" value="{{ employee[3] }}" />
+          </div>
+
+          <!-- Sex -->
+          <div class="cell">Sex (M or F)</div>
+          <div class="cell">
+            <input class="input" name="sex" value="{{ employee[10] }}" />
+          </div>
+          <!-- Salary -->
+          <div class="cell">Salary</div>
+          <div class="cell">
+            <input
+              class="input"
+              type="number"
+              name="salary"
+              value="{{ employee[11] }}"
+            />
+          </div>
+          <!-- Project Name -->
+          <div class="cell">Project Name</div>
+          <div class="cell">
+            <input
+              class="input"
+              type="text"
+              name="project_name"
+              value="{{ employee[12] }}"
+              disabled
+            />
+          </div>
+          <!-- Project Number -->
+          <div class="cell">Project Number</div>
+          <div class="cell">
+            <input
+              class="input"
+              type="text"
+              name="project_number"
+              value="{{ employee[13] }}"
+            />
+          </div>
+          <!-- Project Location -->
+          <div class="cell">Project Location</div>
+          <div class="cell">
+            <input
+              class="input"
+              type="text"
+              name="project_location"
+              value="{{ employee[14] }}"
+              disabled
+            />
+          </div>
+          <!-- Department Number -->
+          <div class="cell">Department Number</div>
+          <div class="cell">
+            <input
+              class="input"
+              type="text"
+              name="department"
+              value="{{ employee[4] }}"
+            />
+          </div>
+
+          <div class="cell">Department Location</div>
+          <div class="cell">
+            <input
+              class="input"
+              type="text"
+              name="department_location"
+              value="{{ employee[16] }}"
+              disabled
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <button type="submit" class="button has-background-primary">
+            Update
+          </button>
+        </div>
+      </div>
+    </form>
+
+    {% include 'footer.html'%}
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<h1 class="title">Register</h1>
+<form action="/register" method="post">
+  <label for="username">UserName: </label>
+  <input class="input" type="text" id="username" name="username" required />
+
+  <label for="password">Password: </label>
+  <input class="input" type="password" id="password" name="password" required />
+
+  <label for="role">Role: </label>
+  <input
+    class="input"
+    type="number"
+    id="role"
+    name="role"
+    required
+    max="3"
+    min="1"
+  />
+
+  <label for="department">Department ID: </label>
+  <input
+    class="input"
+    type="number"
+    id="department"
+    name="department"
+    required
+    min="1"
+    max="10"
+  />
+
+  <label for="pno">Project #: </label>
+  <input class="input" type="number" id="pno" name="pno" required />
+
+  <label for="fname">First Name: </label>
+  <input class="input" type="text" id="fname" name="fname" required />
+
+  <label for="minit">Middle Initial: </label>
+  <input class="input" type="text" id="minit" name="minit" required />
+
+  <label for="lname">Last Name: </label>
+  <input class="input" type="text" id="lname" name="lname" required />
+
+  <label for="ssn">SSN: </label>
+  <input class="input" type="text" id="ssn" name="ssn" required />
+
+  <label for="address">Address: </label>
+  <input class="input" type="text" id="address" name="address" required />
+
+  <label for="sex">Sex: (M OR F)</label>
+  <input class="input" type="text" id="sex" name="sex" required maxlength="1" />
+
+  <label for="salary">Salary: </label>
+  <input
+    class="input"
+    type="number"
+    id="salary"
+    name="salary"
+    required
+    min="0"
+    max="1000000"
+  />
+
+  <button class="button has-background-primary" type="submit">Register</button>
+</form>

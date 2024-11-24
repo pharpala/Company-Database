@@ -1,0 +1,5 @@
+view 
+create seperate page for each usr 
+link project table to employee table using workson - set fk 
+update the register page to include project 
+clean up code 

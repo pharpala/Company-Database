@@ -1,0 +1,63 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Department</th>
+            <th>First Name</th>
+            <th>Middle Initial</th>
+            <th>Last Name</th>
+            {% if user_info[3] == 1 or user_info[3] == 2 %}
+            <th>SSN</th>
+            <th>Address</th>
+            <th>Sex</th>
+            <th>Salary</th>
+            {% endif %}
+            <th>Actions</th>
+        </tr>
+    </thead>
+<tbody>
+{% for employee in employees %}
+<tr>
+{% if user_info[3] == 1 or user_info[3] == 2 %}
+<td><a href="{{ url_for('employee', id=employee[0]) }}">{{ employee[0] }}</a></td>
+{% else %}
+<td>{{ employee[0] }}</td>
+{% endif %}
+<td>
+<form action="{{ url_for('update_employee') }}" method="post" class="form-inline">
+<input class="input" type="hidden" name="id" value="{{ employee[0] }}" />
+<input class="input" {% if user_info[3] == 3 %}disabled{% endif %} class="input" type="text" name="username" value="{{ employee[1] }}" />
+</td>
+<td><input class="input" {% if user_info[3] == 3 %}disabled{% endif %} type="number" name="role" value="{{ employee[3] }}" min="1" max="3" /></td>
+<td><input class="input" {% if user_info[3] == 3 %}disabled{% endif %} type="number" name="department" value="{{ employee[4] }}" min="0" max="1000" /></td>
+<td><input class="input" {% if user_info[3] == 3 %}disabled{% endif %} type="text" name="fname" value="{{ employee[5] }}" /></td>
+<td><input class="input" {% if user_info[3] == 3 %}disabled{% endif %} type="text" name="minit" value="{{ employee[6] }}" maxlength="1" /></td>
+<td><input class="input" {% if user_info[3] == 3 %}disabled{% endif %} type="text" name="lname" value="{{ employee[7] }}" /></td>
+{% if user_info[3] == 1 or user_info[3] == 2 %}
+<td><input class="input" {% if user_info[3] == 3 %}disabled{% endif %} type="text" name="ssn" value="{{ employee[8] }}" maxlength="9" /></td>
+<td><input class="input" {% if user_info[3] == 3 %}disabled{% endif %} type="text" name="address" value="{{ employee[9] }}" /></td>
+<td><input class="input" {% if user_info[3] == 3 %}disabled{% endif %} type="text" name="sex" value="{{ employee[10] }}" maxlength="1" /></td>
+<td><input class="input" {% if user_info[3] == 3 %}disabled{% endif %} type="number" name="salary" value="{{ employee[11] }}" /></td>
+{% endif %}
+<td>
+{% if user_info[3] == 1 or user_info[3] == 2 %}
+<button class="button has-background-primary" type="submit">Save</button>
+</form>
+<form action="{{ url_for('delete_employee') }}" method="post" class="form-inline">
+<input class="input" type="hidden" name="id" value="{{ employee[0] }}" />
+<input class="input" type="hidden" name="department" value="{{ employee[4] }}" />
+<button class="button has-background-danger	" type="submit">Delete</button>
+</form>
+{% endif %}
+
+
+{% if user_info[3] == 3 %}
+<p>-------</p>
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
