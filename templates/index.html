@@ -7,63 +7,148 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
     />
-    <title>Document</title>
+    <title>User Dashboard</title>
     <style>
-      .hideMe {
-        -moz-animation: cssAnimation 0s ease-in 1s forwards;
-        -webkit-animation: cssAnimation 0s ease-in 1s forwards;
-        -o-animation: cssAnimation 0s ease-in 1s forwards;
-        animation: cssAnimation 0s ease-in 1s forwards;
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
+      .notification {
+        font-size: 1rem;
+        text-align: center;
+        padding: 1rem;
+        margin: 1rem auto;
+        max-width: 600px;
+        color: white;
+        background: #f87171; /* Red-400 */
+        border-radius: 0.5rem;
+        animation: fadeOut 5s forwards;
       }
-      @keyframes cssAnimation {
-        to {
-          width: 0;
-          height: 0;
-          overflow: hidden;
-          display: none;
+
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
           visibility: hidden;
         }
       }
-      @-webkit-keyframes cssAnimation {
-        to {
-          width: 0;
-          height: 0;
-          visibility: hidden;
-          display: none;
-        }
+
+      /* Additional Styling for Buttons */
+      .buttons a {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+        color: white;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .buttons a.bg-blue-500 {
+        background-color: #3b82f6;
+      }
+
+      .buttons a.bg-blue-500:hover {
+        background-color: #2563eb;
+      }
+
+      .buttons a.bg-green-500 {
+        background-color: #10b981;
+      }
+
+      .buttons a.bg-green-500:hover {
+        background-color: #059669;
+      }
+
+      .container {
+        padding: 2rem;
+      }
+
+      .content {
+        padding: 2rem 0;
+      }
+
+      .else {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        height: 50vh;
+        color: #2563eb; /* Blue-600 */
+        margin-bottom: 2rem;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
       }
     </style>
   </head>
   <body>
-    {% include 'header.html'%} {% with messages = get_flashed_messages() %} {%
-    if messages %} {% for message in messages %}
-    <div class="notification hideMe">{{ message }}</div>
-    {% endfor %} {% endif %} {% endwith %} {% if user_info %}
-    <h1 class="title">Welcome {{ user_info[1] }}!</h1>
-    <h2 class="subtitle is-4">
-      {{ user_info[5] }} {{ user_info[6] }} {{ user_info[7] }}
-    </h2>
-    <br />
-    {% if user_info[3] == 1 %}
+    <!-- Header -->
+    {% include 'header.html' %}
 
-    <h1 class="title">Super Admin</h1>
-    {% if employees %}
-    <h2 class="subtitle is-4">All Employees</h2>
-    {% include 'employee_table.html'%} {% include 'register.html'%} {% include
-    'insert_from_csv.html'%} {% endif %} {% elif user_info[3] == 2 %}
-    <h1 class="title">Department {{ user_info[4] }} Manager</h1>
-    {% if employees %}
-    <h2 class="subtitle is-4">All Employees</h2>
-    {% include 'employee_table.html'%} {% endif %} {% elif user_info[3] == 3 %}
-    <h1 class="title">Employee</h1>
-    {% if employees %}
-    <h2 class="subtitle is-4">All Employees</h2>
-    {% include 'employee_table.html'%} {% endif %} {% else %}
-    <h1 class="title">Invalid Role</h1>
-    {% endif %} {% else %}
-    <h1 class="title">You are not logged in!</h1>
-    {% endif %} {% include 'footer.html'%}
+    <div class="container">
+      <!-- Notifications -->
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="notification">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% if user_info %}
+        <h1 class="title">Welcome {{ user_info[1] }}!</h1>
+        <h2 class="subtitle is-4">
+          {{ user_info[5] }} {{ user_info[6] }} {{ user_info[7] }}
+        </h2>
+
+        <br />
+
+        {% if user_info[3] == 1 %}
+          <h1 class="title">Super Admin</h1>
+          {% if employees %}
+            <h2 class="subtitle is-4">All Employees</h2>
+            {% include 'employee_table.html' %}
+            {% include 'register.html' %}
+            {% include 'insert_from_csv.html' %}
+          {% endif %}
+        {% elif user_info[3] == 2 %}
+          <h1 class="title">Department {{ user_info[4] }} Manager</h1>
+          {% if employees %}
+            <h2 class="subtitle is-4">All Employees</h2>
+            {% include 'employee_table.html' %}
+          {% endif %}
+        {% elif user_info[3] == 3 %}
+          <h1 class="title">Employee</h1>
+          {% if employees %}
+            <h2 class="subtitle is-4">All Employees</h2>
+            {% include 'employee_table.html' %}
+          {% endif %}
+        {% else %}
+          <h1 class="title">Invalid Role</h1>
+        {% endif %}
+
+      {% else %}
+      <div class="else">
+        <h1 class="title">You are not logged in!</h1>
+        <div class="buttons">
+          <a href="/login" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+            Login
+          </a>
+          <a href="/register" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+            Register
+          </a>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Footer -->
+    {% include 'footer.html' %}
   </body>
 </html>

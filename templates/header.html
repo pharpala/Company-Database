@@ -3,6 +3,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #2563eb !important;
+    padding: 1rem;
+    color: white !important;
+    text-align: center;
   }
 
   .links {
@@ -11,6 +15,20 @@
     align-items: center;
     gap: 1rem;
   }
+
+  header h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+  }
+
+  header a {
+    color: white !important;
+    text-decoration: none;
+  }
+
 </style>
 <header class="navbar">
   <a href="/"><h1 class="title">A4 Flask</h1></a>
@@ -20,6 +38,7 @@
     {% if user_info and user_info[3] == 1 %}
     <a href="/export">Export</a>
     <a href="/projects">Projects</a>
+    <a href="/departments">Departments</a>
     {% endif %}
   </div>
   {% else %}

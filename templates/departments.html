@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    {% include 'header.html'%}
+    {%if departments %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Dname</th>
+          <th>Dnumber</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for department in departments %}
+        <tr>
+          <form action="/update_departments" method="post" class="form-inline">
+            <td>
+              <input
+                class="input"
+                type="text"
+                id="Dname"
+                name="Dname"
+                required
+                value="{{ department[0] }}"
+              />
+            </td>
+
+            <td>
+              <input
+                class="input"
+                type="text"
+                id="Dnumber"
+                name="Dnumber"
+                required
+                value="{{ department[1] }}"
+              />
+            </td>
+
+            <td>
+              <button class="button has-background-primary" type="submit">Save</button>
+            </form>
+            <form action="/delete_department" method="post" class="form-inline">
+                   <input
+                 type="hidden"
+                id="Dnumber"
+                name="Dnumber"
+                value="{{ department[1] }}"
+              />
+              <button class="button has-background-danger	" type="submit">Delete</button>
+            </form>
+            </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+     <h1 class="title">Add Deparment</h1>
+    <form action="/add_department" method="POST">
+      <label for="Dname">Dname</label>
+      <input 
+        class="input" 
+        type="text" 
+        id="Dname" 
+        name="Dname" 
+        required />
+
+      <label for="Pnumber">Dnumber</label>
+      <input 
+        class="input" 
+        type="text" 
+        id="Dnumber" 
+        name="Dnumber" 
+        required />
+
+      <button type="submit" class="button has-background-primary">
+        Add Department
+      </button>
+    </form>
+    {% include 'footer.html'%}
+  </body>
+</html>
