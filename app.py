@@ -73,13 +73,36 @@ def export():
 @app.route("/delete_employee", methods=["POST"])
 def delete_employee():
     employee_id = request.form.get("id")
+    role = request.form.get("role")
+
+    print(employee_id)
+
+    print(role)
     department = request.form.get("department")
     ssn = request.form.get("ssn")
 
+    conn = db.get_db_connection()
+    cur = conn.cursor()
+
+
+    # Check for super admin count
+    cur.execute("SELECT COUNT(*) FROM Employee WHERE role = 1")
+    super_admin_count = cur.fetchone()[0]
+
+    print(super_admin_count)
+
+
     try:
         if is_admin_or_department_admin(department):
-            conn = db.get_db_connection()
-            cur = conn.cursor()
+
+            if role == "1" and super_admin_count <= 1:
+                print("problem")
+                # Restrict updating the role of the last super admin
+                flash("Cannot update or delete the last remaining super admin", "error")
+                return render_template("error.html", error="Operation not permitted for the last super admin")
+
+            else:
+                print("No problem")
 
             # Delete from Employee table
             sql = "DELETE FROM Employee WHERE id = %s"
@@ -91,6 +114,7 @@ def delete_employee():
 
             conn.commit()
             flash("Employee deleted successfully", "success")
+
         else:
             flash("Unauthorized to delete this employee", "error")
             return render_template("error.html", error="Unauthorized")
@@ -112,11 +136,14 @@ def delete_employee():
 
 @app.route("/update_employee", methods=["POST"])
 def update_employee():
+
     try:
+        conn = db.get_db_connection()
+        cur = conn.cursor()
         # Gather input data
         employee_id = request.form.get("id")
         username = request.form.get("username")
-        role = request.form.get("role")
+        new_role = request.form.get("role")
         department = request.form.get("department")
         fname = request.form.get("fname")
         minit = request.form.get("minit")
@@ -128,9 +155,31 @@ def update_employee():
         project_number = request.form.get("project_number")
         department_location = request.form.get("department_location")
 
+
+        # Check for current role and super admin count
+        cur.execute("SELECT role FROM Employee WHERE id = %s", (employee_id,))
+        current_role = cur.fetchone()[0]
+
+      # Check for super admin count
+        cur.execute("SELECT COUNT(*) FROM Employee WHERE role = 1")
+        super_admin_count = cur.fetchone()[0]
+
+
         if is_admin_or_department_admin(department):
-            conn = db.get_db_connection()
-            cur = conn.cursor()
+
+
+            print(new_role)
+            print(super_admin_count)
+
+
+            if current_role == 1 and new_role != "1" and super_admin_count <= 1:
+                flash("Cannot update the last remaining super admin's role", "error")
+                return render_template("error.html", error="Operation not permitted for the last super admin")
+
+
+            else:
+                print("No problem")
+
 
             # Update Employee table
             sql = """
@@ -139,7 +188,7 @@ def update_employee():
                 Lname = %s, SSN = %s, Address = %s, Sex = %s, Salary = %s
             WHERE id = %s
             """
-            cur.execute(sql, (username, role, department, fname, minit, lname, ssn, address, sex, salary, employee_id))
+            cur.execute(sql, (username, new_role, department, fname, minit, lname, ssn, address, sex, salary, employee_id))
             conn.commit()
 
             # Update Works_On table
@@ -172,6 +221,10 @@ def update_employee():
             conn.close()
 
     return redirect(url_for("main_page"))
+
+@app.before_request
+def log_request_info():
+    print(f"Request Method: {request.method}, URL: {request.url}")
 
 
 @app.route("/register", methods=["POST"])
@@ -247,7 +300,7 @@ def employee(id):
 
         # Fetch employee data for the view
         employee_data = db.get_employee_view_data(id)
-        return render_template("employee.html", employee=employee_data)
+        return render_template("employee.html",  user_info=session['user_info'], employee=employee_data)
 
     except Exception as e:
         flash(f"Error occurred while fetching employee data: {str(e)}", "error")
@@ -344,11 +397,28 @@ def logout():
 @app.route("/projects")
 def projects():
     try:
+
+        # Check if the user is logged in
+        if "user_info" in session:
+            user_role = session['user_info'][3]
+            department = session['user_info'][4] if len(session['user_info']) > 4 else None
+
+        # Fetch data based on user role
+        if user_role == 1:  # Super Admin
+            projects = db.get_all_project_data()
+        elif user_role in [2, 3]:  # Department Admin or Normal User
+            if department:
+                projects = db.get_all_project_data_from_a_department(department)
+            else:
+                projects = None
+                flash("Error: Missing department information for user.", "error")
+
+
         if session['user_info'][3] != 1:
             return render_template("error.html", error="Unauthorized to view projects")
         
-        projects = db.get_all_project_data()
-        return render_template("projects.html", projects=projects)
+        # projects = db.get_all_project_data()
+        return render_template("projects.html",  user_info=session['user_info'], projects=projects)
 
     except Exception as e:
         flash(f"An error occurred while retrieving projects: {str(e)}", "error")
@@ -457,7 +527,7 @@ def departments():
             return render_template("error.html", error="Unauthorized to view departments")
         
         departments = db.get_all_department_data()
-        return render_template("departments.html", departments=departments)
+        return render_template("departments.html",  user_info=session['user_info'], departments=departments)
 
     except Exception as e:
         flash(f"An error occurred while retrieving departments: {str(e)}", "error")

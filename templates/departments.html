@@ -12,60 +12,72 @@
   <body>
     {% include 'header.html'%}
     {%if departments %}
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Dname</th>
-          <th>Dnumber</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for department in departments %}
-        <tr>
-          <form action="/update_departments" method="post" class="form-inline">
-            <td>
-              <input
-                class="input"
-                type="text"
-                id="Dname"
-                name="Dname"
-                required
-                value="{{ department[0] }}"
-              />
-            </td>
+    <div style="padding-left: 15px;">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Deparment Name</th>
+            <th>Department Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for department in departments %}
+          <tr>
+            <form action="/update_departments" method="post" class="form-inline">
+              <div style="
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px; /* Add space between elements */
+                    padding: 3px; /* Optional: Add some padding */
+              ">
+              <td>
+                <input
+                  class="input"
+                  type="text"
+                  id="Dname"
+                  name="Dname"
+                  required
+                  value="{{ department[0] }}"
+                />
+              </td>
 
-            <td>
-              <input
-                class="input"
-                type="text"
-                id="Dnumber"
-                name="Dnumber"
-                required
-                value="{{ department[1] }}"
-              />
-            </td>
+              <td>
+                <input
+                  class="input"
+                  type="text"
+                  id="Dnumber"
+                  name="Dnumber"
+                  required
+                  value="{{ department[1] }}"
+                />
+              </td>
+            </div>
 
-            <td>
-              <button class="button has-background-primary" type="submit">Save</button>
-            </form>
-            <form action="/delete_department" method="post" class="form-inline">
-                   <input
-                 type="hidden"
-                id="Dnumber"
-                name="Dnumber"
-                value="{{ department[1] }}"
-              />
-              <button class="button has-background-danger	" type="submit">Delete</button>
-            </form>
-            </td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+              <td>
+                <button class="button has-background-primary" type="submit">Save</button>
+              </form>
+              <form action="/delete_department" method="post" class="form-inline">
+                    <input
+                  type="hidden"
+                  id="Dnumber"
+                  name="Dnumber"
+                  value="{{ department[1] }}"
+                />
+                <button class="button has-background-danger	" type="submit">Delete</button>
+              </form>
+              </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
     {% endif %}
+    <div style="padding-left: 25px;">
      <h1 class="title">Add Deparment</h1>
     <form action="/add_department" method="POST">
-      <label for="Dname">Dname</label>
+      <label for="Dname">Department Name</label>
       <input 
         class="input" 
         type="text" 
@@ -73,18 +85,20 @@
         name="Dname" 
         required />
 
-      <label for="Pnumber">Dnumber</label>
+      <label for="Pnumber">Department Number</label>
       <input 
         class="input" 
         type="text" 
         id="Dnumber" 
         name="Dnumber" 
         required />
-
+      <div style="padding-top: 15px; padding-bottom: 15px;">
       <button type="submit" class="button has-background-primary">
         Add Department
       </button>
+      </div>
     </form>
+    </div>
     {% include 'footer.html'%}
   </body>
 </html>

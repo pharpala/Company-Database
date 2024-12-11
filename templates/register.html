@@ -1,5 +1,8 @@
 <h1 class="title">Register</h1>
 <form action="/register" method="post">
+
+
+
   <label for="username">UserName: </label>
   <input class="input" type="text" id="username" name="username" required />
 
@@ -50,15 +53,9 @@
   <input class="input" type="text" id="sex" name="sex" required maxlength="1" />
 
   <label for="salary">Salary: </label>
-  <input
-    class="input"
-    type="number"
-    id="salary"
-    name="salary"
-    required
-    min="0"
-    max="1000000"
-  />
+  <input class="input" type="number" id="salary" name="salary" required min="0" max="1000000"/>
 
-  <button class="button has-background-primary" type="submit">Register</button>
+  <div style="padding-top: 15px; padding-bottom: 15px;">
+    <button class="button has-background-primary;" type="submit">Register</button>
+  </div>
 </form>

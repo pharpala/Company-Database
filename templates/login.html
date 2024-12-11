@@ -48,7 +48,7 @@
         border: 1px solid #d1d5db; /* Gray-300 */
         border-radius: 4px;
         font-size: 1rem;
-        color: #333;
+        color: rgb(0, 0, 0);
       }
 
       .input:focus {
@@ -113,11 +113,11 @@
       <form action="/login" method="post">
         <div class="field">
           <label for="username">Username:</label>
-          <input class="input" type="text" id="username" name="username" required />
+          <input class="input" type="text" style ="background-color: white;" id="username" name="username" required />
         </div>
         <div class="field">
           <label for="password">Password:</label>
-          <input class="input" id="password" name="password" required />
+          <input class="input" id="password" style ="background-color: white;" name="password" required />
         </div>
         <button class="button" type="submit">Login</button>
       </form>

@@ -11,8 +11,10 @@
   </head>
   <body>
     {% include 'header.html'%} {%if error%}
-    <h1 class="title has-text-danger">Error : {{error}}</h1>
-    <a href="/">GO BACK HOME</a>
+    <div style="height: 65vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+      <h1 class="title has-text-danger" style="padding: 25px; text-align: center;">Error : {{error}}</h1>
+      <a href="/" style="padding: 25px;">GO BACK HOME</a>
+    </div>
     {% endif %}{% include 'footer.html'%}
   </body>
 </html>
