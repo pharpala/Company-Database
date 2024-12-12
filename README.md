@@ -10,15 +10,77 @@ This project was developed as part of a class assignment. The objective was to c
 
 ## Description
 
-This application demonstrates the use of Flask as a web framework and PostgreSQL as the database management system. It includes basic CRUD operations and user authentication.
+This application highlights the robust capabilities of Flask as a web framework and PostgreSQL as a database management system. It serves as a comprehensive front-end for a Companies Database, integrating various features designed to enhance data management and user interaction.
+
+### Key Features
+
+- **User Authentication**: Secure login and registration system to manage access.
+  
+  ![User Authentication](public\login.png)
+
+- **Companies Database**: Manage comprehensive data, including:
+  - **Departments**
+
+    ![Departments Table](public\department.png)
+
+  - **Company Projects**
+
+    ![Company Projects Table](public\project.png)  
+
+  - **Employees**
+
+    ![Employees Table](public\home.png)  
+
+  - **Employee Profiles**
+
+    ![Employee Profiles](public\project.png)  
+
+  - **Export Data to Excel**
+
+    ![Export Data](public\export.png)
+
+  - **Import CSV Files**
+
+    ![Import CSV](public\insert-csv.png)
+
+### Role-Based Access Control (RBAC)
+
+The application implements a Role-Based Access Control (RBAC) model, ensuring secure and structured access:
+
+- **Super Admin**: Full CRUD capabilities across all modules.
+  
+  ![Super Admin View](public\home.png)  
+  *Include an example of a Super Admin dashboard.*
+
+- **Department Manager**: CRUD capabilities restricted to their department. (notice header compared to Super Admin)
+  
+  ![Department Manager View](public\role2.png)  
+  *Add a screenshot showcasing a Department Manager's restricted access.*
+
+- **Employee User**: Read-only access within their department.
+  
+  ![Department User View](public\role3.png)  
+
+This structured approach ensures that users have access to only the data and functionalities relevant to their roles, promoting data security and operational efficiency.
 
 ## Setup Instructions
 
 1. Clone the repository.
+
 2. Create a virtual environment and activate it.
-3. Install the required dependencies using `pip install -r requirements.txt`.
-4. Set up the PostgreSQL database and update the configuration in the application.
-5. Run the application using `flask run`.
+
+3. Install the required dependencies using `pip install flask pip install psycopg2`.
+
+4. Set up the PostgreSQL database and update the configuration in the application.  
+
+5. Run the application using `python3 app.py`.  
+
+## Live Demo
+
+
+## Live Demo
+
+I will be hosting the application for everyone to use as soon as finals week finishes, stay tuned.
 
 ## License
 
