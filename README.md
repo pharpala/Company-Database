@@ -55,13 +55,10 @@ The application implements a Role-Based Access Control (RBAC) model, ensuring se
 - **Department Manager**: CRUD capabilities are restricted to their department. (notice header compared to Super Admin)
   
   ![Department Manager View](public/role2.png)  
-  *Add a screenshot showcasing a Department Manager's restricted access.*
 
 - **Employee User**: Read-only access within their department.
   
   ![Department User View](public/role3.png)  
-
-This structured approach ensures that users have access to only the data and functionalities relevant to their roles, promoting data security and operational efficiency.
 
 ## Setup Instructions
 
@@ -77,15 +74,8 @@ This structured approach ensures that users have access to only the data and fun
 
 ## Live Demo
 
-
-## Live Demo
-
 I will host the application for everyone to use as soon as finals week finishes, stay tuned.
-
-## License
-
-This project is licensed under the MIT License.
 
 ## Acknowledgements
 
-Special thanks to the course instructors and teaching assistants for their guidance and support.
+This is a CIS3530 - Databases project from the University of Guelph under Professor Charlie Obimbo.
