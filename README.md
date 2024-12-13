@@ -34,7 +34,7 @@ This application highlights the robust capabilities of Flask as a web framework 
 
   - **Employee Profiles**
 
-    ![Employee Profiles](public/project.png)  
+    ![Employee Profiles](public/profile.png)  
 
   - **Export Data to Excel**
 
