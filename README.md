@@ -16,32 +16,32 @@ This application highlights the robust capabilities of Flask as a web framework 
 
 - **User Authentication**: Secure login and registration system to manage access.
   
-  ![User Authentication](public\login.png)
+  ![User Authentication](public/login.png)
 
 - **Companies Database**: Manage comprehensive data, including:
   - **Departments**
 
-    ![Departments Table](public\department.png)
+    ![Departments Table](public/department.png)
 
   - **Company Projects**
 
-    ![Company Projects Table](public\project.png)  
+    ![Company Projects Table](public/project.png)  
 
   - **Employees**
 
-    ![Employees Table](public\home.png)  
+    ![Employees Table](public/home.png)  
 
   - **Employee Profiles**
 
-    ![Employee Profiles](public\project.png)  
+    ![Employee Profiles](public/project.png)  
 
   - **Export Data to Excel**
 
-    ![Export Data](public\export.png)
+    ![Export Data](public/export.png)
 
   - **Import CSV Files**
 
-    ![Import CSV](public\insert-csv.png)
+    ![Import CSV](public/insert-csv.png)
 
 ### Role-Based Access Control (RBAC)
 
@@ -49,17 +49,16 @@ The application implements a Role-Based Access Control (RBAC) model, ensuring se
 
 - **Super Admin**: Full CRUD capabilities across all modules.
   
-  ![Super Admin View](public\home.png)  
-  *Include an example of a Super Admin dashboard.*
+  ![Super Admin View](public/home.png)
 
-- **Department Manager**: CRUD capabilities restricted to their department. (notice header compared to Super Admin)
+- **Department Manager**: CRUD capabilities are restricted to their department. (notice header compared to Super Admin)
   
-  ![Department Manager View](public\role2.png)  
+  ![Department Manager View](public/role2.png)  
   *Add a screenshot showcasing a Department Manager's restricted access.*
 
 - **Employee User**: Read-only access within their department.
   
-  ![Department User View](public\role3.png)  
+  ![Department User View](public/role3.png)  
 
 This structured approach ensures that users have access to only the data and functionalities relevant to their roles, promoting data security and operational efficiency.
 
@@ -80,7 +79,7 @@ This structured approach ensures that users have access to only the data and fun
 
 ## Live Demo
 
-I will be hosting the application for everyone to use as soon as finals week finishes, stay tuned.
+I will host the application for everyone to use as soon as finals week finishes, stay tuned.
 
 ## License
 
