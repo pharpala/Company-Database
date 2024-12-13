@@ -1,16 +1,12 @@
 # Class Project: Flask Application
 
-This project was developed as part of a class assignment. The objective was to create a web application using the following technologies:
+This application highlights the capabilities of Flask as a web framework and PostgreSQL as a database management system. It serves as a front-end for a Companies Database, integrating various features designed for data management and user interaction.
 
 ## Tech Stack
 
 - **Python**
 - **Flask**
 - **PostgreSQL**
-
-## Description
-
-This application highlights the robust capabilities of Flask as a web framework and PostgreSQL as a database management system. It serves as a comprehensive front-end for a Companies Database, integrating various features designed to enhance data management and user interaction.
 
 ### Key Features
 
