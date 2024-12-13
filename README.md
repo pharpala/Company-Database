@@ -19,17 +19,18 @@ This application highlights the robust capabilities of Flask as a web framework 
   ![User Authentication](public/login.png)
 
 - **Companies Database**: Manage comprehensive data, including:
+
+-   **Employees**
+
+    ![Employees Table](public/home.png)
+    
   - **Departments**
 
     ![Departments Table](public/department.png)
 
   - **Company Projects**
 
-    ![Company Projects Table](public/project.png)  
-
-  - **Employees**
-
-    ![Employees Table](public/home.png)  
+    ![Company Projects Table](public/project.png)   
 
   - **Employee Profiles**
 
